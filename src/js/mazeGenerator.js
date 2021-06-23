@@ -31,15 +31,11 @@ class Maze {
         cells.makeSet([rowNum, colNum]);
       })
     })
-    // console.log(cells);
     while (walls.length > 0) {
       let i = Math.floor(Math.random() * (walls.length - 1))
-      console.log(walls.length);
-      console.log(i);
       let wall = walls[i];
       let first = cells.find(wall[0]);
       let second = cells.find(wall[1]);
-      debugger;
       if (first === second || first === undefined || second === undefined) {
         keptWalls.push(wall);
         walls.splice(i, 1);
@@ -49,14 +45,36 @@ class Maze {
       }
     }
 
-    console.log(cells);
-    console.log(keptWalls);
+    this.printKruskal(keptWalls);
   }
 
-  
+  printKruskal (keptWalls) {
+    const canvasEl = document.getElementsByTagName("canvas")[0];
+    canvasEl.height = this.height * 20;
+    canvasEl.width = this.width * 20;
+    canvasEl.style.border = '1px solid black';
+    const ctx = canvasEl.getContext("2d");
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 1;
+    keptWalls.forEach((wall) => {
+      const first = wall[0];
+      const second = wall[1];
+      if (first[0] < second[0]) { //horizontal line
+        ctx.beginPath();
+        ctx.moveTo(second[1] * 20, (second[0] * 20));
+        ctx.lineTo((second[1] + 1) * 20, second[0] * 20);
+        ctx.stroke();
+      } else { //vertical line
+        ctx.beginPath();
+        ctx.moveTo(second[1] * 20, (second[0] * 20));
+        ctx.lineTo((second[1]) * 20, (second[0] + 1) * 20);
+        ctx.stroke();
+      }
+    })
+  }
 }
 
-let maze = new Maze(4, 4);
+let maze = new Maze(13, 13);
 maze.kruskal();
 
 module.exports = Maze;
