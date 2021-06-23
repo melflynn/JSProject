@@ -8,6 +8,7 @@ class Maze {
     const graph = new Graph(width, height);
     this.grid = graph.grid;
     this.AdjacencyCellList = this.grid.AdjacencyCellList;
+    this.canvasEl = document.getElementsByTagName("canvas")[0];
   }
 
   kruskal () {
@@ -49,10 +50,10 @@ class Maze {
   }
 
   printKruskal (keptWalls) {
-    const canvasEl = document.getElementsByTagName("canvas")[0];
-    canvasEl.height = this.height * 20 + 10;
-    canvasEl.width = this.width * 20 + 10;
-    const ctx = canvasEl.getContext("2d");
+    // const canvasEl = document.getElementsByTagName("canvas")[0];
+    this.canvasEl.height = this.height * 20 + 10;
+    this.canvasEl.width = this.width * 20 + 10;
+    const ctx = this.canvasEl.getContext("2d");
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 1;
     // canvasEl.style.border = '1px solid black';
@@ -98,7 +99,7 @@ class Maze {
   }
 }
 
-let maze = new Maze(5, 5);
-maze.kruskal();
+// let maze = new Maze(5, 5);
+// maze.kruskal();
 
 module.exports = Maze;
