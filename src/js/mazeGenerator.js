@@ -50,31 +50,55 @@ class Maze {
 
   printKruskal (keptWalls) {
     const canvasEl = document.getElementsByTagName("canvas")[0];
-    canvasEl.height = this.height * 20;
-    canvasEl.width = this.width * 20;
-    canvasEl.style.border = '1px solid black';
+    canvasEl.height = this.height * 20 + 10;
+    canvasEl.width = this.width * 20 + 10;
     const ctx = canvasEl.getContext("2d");
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 1;
+    // canvasEl.style.border = '1px solid black';
+    ctx.beginPath();
+    ctx.moveTo(5,5);
+    ctx.lineTo(this.width * 20 + 5, 5);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(5,5);
+    ctx.lineTo(5, 25);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(5, 45);
+    ctx.lineTo(5, this.height * 20 + 5);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(5, this.height * 20 + 5);
+    ctx.lineTo(this.width * 20 + 5, this.height * 20 + 5);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(this.width * 20 + 5, 5);
+    ctx.lineTo(this.width * 20 + 5, this.height * 20 + 5 - 40);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(this.width * 20 + 5, this.height * 20 + 5 - 20);
+    ctx.lineTo(this.width * 20 + 5, this.height * 20 + 5);
+    ctx.stroke();
     keptWalls.forEach((wall) => {
       const first = wall[0];
       const second = wall[1];
       if (first[0] < second[0]) { //horizontal line
         ctx.beginPath();
-        ctx.moveTo(second[1] * 20, (second[0] * 20));
-        ctx.lineTo((second[1] + 1) * 20, second[0] * 20);
+        ctx.moveTo(second[1] * 20 + 5, (second[0] * 20) + 5);
+        ctx.lineTo((second[1] + 1) * 20 + 5, second[0] * 20 + 5);
         ctx.stroke();
       } else { //vertical line
         ctx.beginPath();
-        ctx.moveTo(second[1] * 20, (second[0] * 20));
-        ctx.lineTo((second[1]) * 20, (second[0] + 1) * 20);
+        ctx.moveTo(second[1] * 20 + 5, (second[0] * 20) + 5);
+        ctx.lineTo((second[1]) * 20 + 5, (second[0] + 1) * 20 + 5);
         ctx.stroke();
       }
     })
   }
 }
 
-let maze = new Maze(13, 13);
+let maze = new Maze(5, 5);
 maze.kruskal();
 
 module.exports = Maze;
