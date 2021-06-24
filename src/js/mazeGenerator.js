@@ -1,5 +1,6 @@
 const Graph = require('./graph');
 const DisjointSet = require('./disjointSet');
+const Wall = require('./wall');
 
 class Maze {
   constructor (width, height) {
@@ -9,6 +10,7 @@ class Maze {
     this.grid = graph.grid;
     this.AdjacencyCellList = this.grid.AdjacencyCellList;
     this.canvasEl = document.getElementsByTagName("canvas")[0];
+    this.walls = [];
   }
 
   kruskal () {
@@ -53,47 +55,32 @@ class Maze {
     // const canvasEl = document.getElementsByTagName("canvas")[0];
     this.canvasEl.height = this.height * 20 + 10;
     this.canvasEl.width = this.width * 20 + 10;
+    // this.canvasEl.style.backgroundColor = 'black';
     const ctx = this.canvasEl.getContext("2d");
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 1;
     // canvasEl.style.border = '1px solid black';
-    ctx.beginPath();
-    ctx.moveTo(5,5);
-    ctx.lineTo(this.width * 20 + 5, 5);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(5,5);
-    ctx.lineTo(5, 25);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(5, 45);
-    ctx.lineTo(5, this.height * 20 + 5);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(5, this.height * 20 + 5);
-    ctx.lineTo(this.width * 20 + 5, this.height * 20 + 5);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(this.width * 20 + 5, 5);
-    ctx.lineTo(this.width * 20 + 5, this.height * 20 + 5 - 40);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(this.width * 20 + 5, this.height * 20 + 5 - 20);
-    ctx.lineTo(this.width * 20 + 5, this.height * 20 + 5);
-    ctx.stroke();
+    this.walls.push(new Wall([5, 5], [this.width * 20 + 5, 5], ctx, "horizontal"));
+    this.walls.push(new Wall([5, 5], [5, 25], ctx, "vertical"));
+    this.walls.push(new Wall([5, 45], [5, this.height * 20 + 5], ctx, "vertical"));
+    this.walls.push(new Wall([5, this.height * 20 + 5], [this.width * 20 + 5, this.height * 20 + 5], ctx, "horizontal"));
+    this.walls.push(new Wall([this.width * 20 + 5, 5], [this.width * 20 + 5, this.height * 20 + 5 - 40], ctx, "vertical"));
+    this.walls.push(new Wall([this.width * 20 + 5, this.height * 20 + 5 - 20], [this.width * 20 + 5, this.height * 20 + 5], ctx, "vertical"));
     keptWalls.forEach((wall) => {
       const first = wall[0];
       const second = wall[1];
       if (first[0] < second[0]) { //horizontal line
-        ctx.beginPath();
-        ctx.moveTo(second[1] * 20 + 5, (second[0] * 20) + 5);
-        ctx.lineTo((second[1] + 1) * 20 + 5, second[0] * 20 + 5);
-        ctx.stroke();
+        this.walls.push(new Wall([second[1] * 20 + 5, second[0] * 20 + 5], [(second[1] + 1) * 20 + 5, second[0] * 20 + 5], ctx, "horizontal"));
+        // ctx.beginPath();
+        // ctx.moveTo(second[1] * 20 + 5, (second[0] * 20) + 5);
+        // ctx.lineTo((second[1] + 1) * 20 + 5, second[0] * 20 + 5);
+        // ctx.stroke();
       } else { //vertical line
-        ctx.beginPath();
-        ctx.moveTo(second[1] * 20 + 5, (second[0] * 20) + 5);
-        ctx.lineTo((second[1]) * 20 + 5, (second[0] + 1) * 20 + 5);
-        ctx.stroke();
+        this.walls.push(new Wall([second[1] * 20 + 5, second[0] * 20 + 5], [second[1] * 20 + 5, (second[0] + 1) * 20 + 5], ctx, "vertical"));
+        // ctx.beginPath();
+        // ctx.moveTo(second[1] * 20 + 5, (second[0] * 20) + 5);
+        // ctx.lineTo((second[1]) * 20 + 5, (second[0] + 1) * 20 + 5);
+        // ctx.stroke();
       }
     })
   }

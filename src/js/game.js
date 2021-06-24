@@ -2,13 +2,13 @@ class Game {
   constructor (map, player) {
     this.map = map;
     this.player = player;
-    this.addPlayer();
+    // this.addPlayer();
   }
 
-  addPlayer () {
-    const ctx = this.map.getContext("2d");
-    this.player.draw(ctx);
-  }
+  // addPlayer () {
+  //   const ctx = this.map.getContext("2d");
+  //   this.player.draw(ctx);
+  // }
 }
 
 module.exports = Game;
