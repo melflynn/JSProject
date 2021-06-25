@@ -2,15 +2,16 @@ class Ray {
   constructor (startPos, endPos, ctx) {
     this.startPos = startPos;
     this.endPos = endPos;
-    this.draw(ctx);
+    this.ctx = ctx;
+    // this.draw(ctx);
   }
 
-  draw (ctx) {
+  draw () {
     // ctx.strokeStyle = 'transparent';
-    ctx.beginPath();
-    ctx.moveTo(...this.startPos);
-    ctx.lineTo(...this.endPos);
-    ctx.stroke();
+    this.ctx.beginPath();
+    this.ctx.moveTo(...this.startPos);
+    this.ctx.lineTo(...this.endPos);
+    this.ctx.stroke();
   }
 }
 
