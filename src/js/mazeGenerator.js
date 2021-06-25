@@ -9,7 +9,8 @@ class Maze {
     const graph = new Graph(width, height);
     this.grid = graph.grid;
     this.AdjacencyCellList = this.grid.AdjacencyCellList;
-    this.canvasEl = document.getElementsByTagName("canvas")[0];
+    this.canvasEl = document.createElement('canvas');
+    document.getElementById('maze').append(this.canvasEl);
     this.keptWalls = [];
     this.walls = [];
   }
@@ -56,33 +57,47 @@ class Maze {
     // const canvasEl = document.getElementsByTagName("canvas")[0];
     this.canvasEl.height = this.height * 20 + 10;
     this.canvasEl.width = this.width * 20 + 10;
-    // this.canvasEl.style.backgroundColor = 'black';
+    // debugger;
+    
+    // this.canvasEl.style.backgroundColor = 'white';
     const ctx = this.canvasEl.getContext("2d");
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 1;
     // canvasEl.style.border = '1px solid black';
     this.walls = [];
-    this.walls.push(new Wall([5, 5], [this.width * 20 + 5, 5], ctx, "horizontal"));
+    let pos = [5,5];
+    while (pos[0] < this.width * 20 + 5) {
+      this.walls.push(new Wall(pos, [pos[0] + 20, pos[1]], ctx, "horizontal"));
+      pos = [pos[0] + 20, pos[1]]; 
+    } 
+    // this.walls.push(new Wall([5, 5], [this.width * 20 + 5, 5], ctx, "horizontal"));
     this.walls.push(new Wall([5, 5], [5, 25], ctx, "vertical"));
-    this.walls.push(new Wall([5, 45], [5, this.height * 20 + 5], ctx, "vertical"));
-    this.walls.push(new Wall([5, this.height * 20 + 5], [this.width * 20 + 5, this.height * 20 + 5], ctx, "horizontal"));
-    this.walls.push(new Wall([this.width * 20 + 5, 5], [this.width * 20 + 5, this.height * 20 + 5 - 40], ctx, "vertical"));
+    pos = [5,45];
+    while (pos[1] < this.height * 20 + 5) {
+      this.walls.push(new Wall(pos, [pos[0], pos[1] + 20], ctx, "vertical"));
+      pos = [pos[0], pos[1] + 20];
+    }
+    // this.walls.push(new Wall([5, 45], [5, this.height * 20 + 5], ctx, "vertical"));
+    pos = [5, this.height * 20 + 5];
+    while (pos[0] < this.width * 20 + 5) {
+      this.walls.push(new Wall(pos, [pos[0] + 20, this.height * 20 + 5], ctx, "horizontal"));
+      pos = [pos[0] + 20, pos[1]];
+    }
+    // this.walls.push(new Wall([5, this.height * 20 + 5], [this.width * 20 + 5, this.height * 20 + 5], ctx, "horizontal"));
+    pos = [this.width * 20 + 5, 5];
+    while (pos[1] < this.height * 20 + 5 - 40) {
+      this.walls.push(new Wall(pos, [pos[0], pos[1] + 20], ctx, "vertical"));
+      pos = [pos[0], pos[1] + 20];
+    }
+    // this.walls.push(new Wall([this.width * 20 + 5, 5], [this.width * 20 + 5, this.height * 20 + 5 - 40], ctx, "vertical"));
     this.walls.push(new Wall([this.width * 20 + 5, this.height * 20 + 5 - 20], [this.width * 20 + 5, this.height * 20 + 5], ctx, "vertical"));
     this.keptWalls.forEach((wall) => {
       const first = wall[0];
       const second = wall[1];
       if (first[0] < second[0]) { //horizontal line
         this.walls.push(new Wall([second[1] * 20 + 5, second[0] * 20 + 5], [(second[1] + 1) * 20 + 5, second[0] * 20 + 5], ctx, "horizontal"));
-        // ctx.beginPath();
-        // ctx.moveTo(second[1] * 20 + 5, (second[0] * 20) + 5);
-        // ctx.lineTo((second[1] + 1) * 20 + 5, second[0] * 20 + 5);
-        // ctx.stroke();
       } else { //vertical line
         this.walls.push(new Wall([second[1] * 20 + 5, second[0] * 20 + 5], [second[1] * 20 + 5, (second[0] + 1) * 20 + 5], ctx, "vertical"));
-        // ctx.beginPath();
-        // ctx.moveTo(second[1] * 20 + 5, (second[0] * 20) + 5);
-        // ctx.lineTo((second[1]) * 20 + 5, (second[0] + 1) * 20 + 5);
-        // ctx.stroke();
       }
     })
   }

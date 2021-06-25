@@ -18,7 +18,10 @@ class Flashlight {
     ctx.stroke();
     ctx.fillStyle = 'rgba(250, 216, 89, .5)';
     ctx.fill();
+  }
 
+  hideMaze() {
+    const ctx = this.map.canvasEl.getContext('2d');
     let maskCanvas = document.createElement('canvas');
     maskCanvas.width = this.map.canvasEl.width;
     maskCanvas.height = this.map.canvasEl.height;

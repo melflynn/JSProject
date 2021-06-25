@@ -7,13 +7,40 @@
   <title>Document</title>
   <script src="../vendor/keymaster.js"></script>
   <script type="text/javascript" src="./main.js" defer></script>
+  <link rel="stylesheet" href="./reset.css">
+  <link rel="stylesheet" href="./index.css">
 </head>
 <body>
   
-  <!-- <ul id="graph">
-
-  </ul> -->
-
-  <canvas></canvas>
+  
+  <header>
+    <h1>Welcome to the A-Maze-Ing Game!</h1>
+    
+    
+    <form>
+      <h3>Please select a maze size</h3>
+      <label>Width:
+        <input id="maze-width" type="number">
+      </label>
+      <label>Height:
+        <input id="maze-height" type="number">
+      </label>
+      <button id="create-maze">Create!</button>
+    </form>
+  </header>
+  
+  <section id="maze">
+    <section id="modal-box">
+      
+    </section>
+    <section class="buttons">
+      <button id="reveal-maze">Reveal</button>
+      <button id="peek">Peek</button>
+    </section>
+    
+  </section>
+  
+  <section id="modal-background">
+  </section>
 </body>
 </html>
