@@ -8,14 +8,18 @@ class Game {
     // this.addPlayer();
     // this.draw();
     this.bindKeyHandlers();
+    this.over = null;
   }
 
   bindKeyHandlers () {
     window.addEventListener('keydown', this.move.bind(this));
+    if (this.over) {
+      window.removeEventListener('keydown', this.move.bind(this));
+    }
   }
 
   move (e) {
-    if (this.player) {
+    if (this.player && !this.over) {
       this.player.prevPos[1] = this.player.pos[1] - 7;
       this.player.prevPos[0] = this.player.pos[0] - 7;
       // const dist = (pos1, pos2) =>  Math.sqrt(Math.pow(pos1[0] - pos2[0], 2) + Math.pow(pos1[1] - pos2[1], 2));
@@ -32,6 +36,7 @@ class Game {
           }
           if (newPos) {
             this.player.pos[0] -= 2;
+            this.draw();
           }
           break;
         // case 37: //left
@@ -56,6 +61,7 @@ class Game {
           }
           if (newPos) {
             this.player.pos[1] -= 2;
+            this.draw();
           }
           break;
         // case 38: //up
@@ -80,6 +86,11 @@ class Game {
           }
           if (newPos) {
             this.player.pos[0] += 2;
+            if (this.player.pos[0] > this.map.canvasEl.width - 5) {
+              console.log('You win!');
+              this.over = 'won';
+            }
+            this.draw();
           }
           break;
         // case 39: //right
@@ -104,6 +115,7 @@ class Game {
           }
           if (newPos) {
             this.player.pos[1] += 2;
+            this.draw();
           }
           break;
         // case 40: //down
@@ -120,7 +132,7 @@ class Game {
         //   break;
       }
   
-      this.draw();
+      
     }
   }
 
@@ -133,6 +145,22 @@ class Game {
     if (!reveal) {
       this.flashlight.draw();
       this.flashlight.hideMaze();
+    }
+    if (this.over) {
+      let modalBackground = document.createElement('section');
+      modalBackground.id = "result-modal-background";
+      // getElementById('result-modal-background').style.display = 'block';
+      let resultModal = document.createElement('div');
+      resultModal.id = 'result-modal-box';
+      if (this.over === 'won') {
+        resultModal.innerText = "You won!";
+      } else {
+        resultModal.innerText = "Better luck next time!";
+      }
+      modalBackground.appendChild(resultModal);
+      document.getElementsByTagName('body')[0].appendChild(modalBackground);
+      // window.removeEventListener('keydown', this.move.bind(this));
+      // document.getElementById('result-modal-box').style.display = 'block';
     }
     // this.flashlight.calculateRays();
     // this.flashlight.lightMaze();

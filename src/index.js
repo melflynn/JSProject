@@ -23,7 +23,7 @@ create.addEventListener('click', (e) => {
   game.player = player;
   game.flashlight = flashlight;
   game.draw(true);
-  let modalBox = document.getElementById('modal-box')
+  let modalBox = document.getElementById('countdown-modal-box')
   const countdown = [3, 2, 1, 'start', ''];
   countdown.forEach((text, i) => {
     setTimeout(() => modalBox.innerText = text, 1000 * i);
@@ -34,13 +34,23 @@ create.addEventListener('click', (e) => {
 const reveal = document.getElementById('reveal-maze');
 reveal.addEventListener('click', (e) => {
   e.preventDefault();
+  game.over = 'lost';
   game.draw(true);
 })
 
+let peekCount = 3;
 const peek = document.getElementById('peek');
+
 peek.addEventListener('click', (e) => {
   e.preventDefault();
-  game.draw(true);
-  setTimeout(() => game.draw(), 3000);
+  if (peekCount > 1) {
+    game.draw(true);
+    setTimeout(() => game.draw(), 3000);
+  } else {
+    game.draw(true);
+    setTimeout(() => game.draw(), 3000);
+    peek.style.display = 'none';
+  }
+  peekCount -= 1;
 })
 
