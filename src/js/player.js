@@ -7,7 +7,7 @@ class Player {
     this.vel = [0,0];
     this.canvas = map.canvasEl;
     // this.walls = map.walls;
-    console.log(this.walls);
+    // console.log(this.walls);
     // const ctx = canvas.getContext('2d');
     // this.draw();
     // this.bindKeyHandlers();
@@ -15,14 +15,18 @@ class Player {
 
   draw() {
     const ctx = this.canvas.getContext('2d');
-    ctx.beginPath();
+    // ctx.beginPath();
     // ctx.clearRect(this.prevPos[0], this.prevPos[1], 14, 14 );
-    ctx.closePath()
+    // ctx.closePath()
     ctx.beginPath();
     ctx.arc(this.pos[0], this.pos[1], 6, 0, 2 * Math.PI)
     ctx.stroke();
     ctx.fillStyle = 'yellow';
     ctx.fill();
+    // ctx.globalCompositeOperation = 'destination-out';
+    // ctx.arc(this.canvas.width / 2, this.canvas.height / 2, this.canvas.width, 0, 2 * Math.PI);
+    // ctx.fill();
+    
   }
 
   // bindKeyHandlers () {

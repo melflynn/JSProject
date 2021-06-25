@@ -11,14 +11,34 @@ class Flashlight {
     // this.lightMaze(ctx);
   }
 
+  draw () {
+    const ctx = this.map.canvasEl.getContext('2d');
+    ctx.beginPath();
+    ctx.arc(this.player.pos[0], this.player.pos[1], 50, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.fillStyle = 'rgba(250, 216, 89, .5)';
+    ctx.fill();
+
+    let maskCanvas = document.createElement('canvas');
+    maskCanvas.width = this.map.canvasEl.width;
+    maskCanvas.height = this.map.canvasEl.height;
+    const maskCtx = maskCanvas.getContext('2d');
+    maskCtx.fillStyle = 'black';
+    maskCtx.fillRect(0, 0, maskCanvas.width, maskCanvas.height);
+    maskCtx.globalCompositeOperation = 'xor';
+    maskCtx.arc(this.player.pos[0], this.player.pos[1], 50, 0, 2 * Math.PI);
+    maskCtx.fill();
+    ctx.drawImage(maskCanvas, 0, 0);
+  }
+
   calculateRays () {
     const ctx = this.map.canvasEl.getContext('2d');
     this.rays = [];
-    this.map.walls.forEach(wall => {
-      const ray1Pos = [this.player.pos, wall.startPos];
+    this.map.walls.forEach(wall => { //build a ray from the player center to each wall start and end point
+      const ray1Pos = [this.player.pos, wall.startPos]; //first the ray from center to the start point of the wall
       let intersects = false;
       let i = 0;
-      while (!intersects && i < this.map.walls.length) {
+      while (!intersects && i < this.map.walls.length) { //check if ray will intersect any walls
         const otherWall = this.map.walls[i];
         // if (otherWall !== wall) {
           let x1 = ray1Pos[0][0];
@@ -33,14 +53,14 @@ class Flashlight {
           let t = ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / det;
           let u = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / det;
           if ((t > 0 && t < 1) && (u > 0 && u < 1)) {
-            intersects = true;
+            intersects = true; //do not include ray if intersecting other walls
           }
         // }
         i++;
       }
       if (!intersects) {
         let j = 0;
-        while (!intersects && j < this.rays.length) {
+        while (!intersects && j < this.rays.length) { //check if ray is colinear to any existing ray
           const ray = this.rays[j];
           if (!(ray.endPos[0] === ray1Pos[1][0] && ray.endPos[1] === ray1Pos[1][1])) {
             // debugger;
@@ -53,7 +73,7 @@ class Flashlight {
               }
             } else {
               if (Math.abs(rayLength - (ray1Length + rayDist)) < Math.abs(0.01)) {
-                this.rays.splice(this.rays.indexOf(ray), 1, new Ray(this.player.pos, wall.startPos, ctx))
+                this.rays.splice(this.rays.indexOf(ray), 1, new Ray(this.player.pos, wall.startPos, ctx)) //if colinear, select the shorter (nearest) of the rays
                 intersects = true;
               }
             }
@@ -71,7 +91,7 @@ class Flashlight {
         }
       }
         
-      const ray2Pos = [this.player.pos, wall.endPos];
+      const ray2Pos = [this.player.pos, wall.endPos]; //next repeat the process for the ray from center to end point of the wall
       intersects = false;
       i = 0;
       while (!intersects && i < this.map.walls.length) {
@@ -130,7 +150,7 @@ class Flashlight {
     })
     console.log(this.rays);
     this.rays.forEach(ray => {
-      ray.draw();
+      ray.draw(); //print the rays that do not intersect other walls
     })
   }
 

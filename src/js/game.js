@@ -79,6 +79,7 @@ class Game {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     this.map.draw();
     this.player.draw();
+    this.flashlight.draw();
     // this.flashlight.calculateRays();
     // this.flashlight.lightMaze();
   }
