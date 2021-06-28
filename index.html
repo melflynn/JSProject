@@ -5,8 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script src="../vendor/keymaster.js"></script>
-  <script type="text/javascript" src="./main.js" defer></script>
+  <script type="text/javascript" src="./dist/main.js" defer></script>
   <link rel="stylesheet" href="./reset.css">
   <link rel="stylesheet" href="./index.css">
 </head>
@@ -34,6 +33,12 @@
       <button id="create-maze">Create!</button>
     </form>
   </header>
+
+  <section id="description">
+    The A-Maze-Ing Game is a random maze generator turned online game! The generator uses Kruskal's algorithm to generate a
+    random maze of the given width and height. Use the w-a-s-d keys to move your character around the maze. You get 3 peeks
+    at the full maze and your time is limited based on the size of the maze. The larger the maze, the more difficult!
+  </section>
   
   <section id="maze">
     <section id="countdown-modal-box">
@@ -45,7 +50,6 @@
     </section>
     
   </section>
-  
   
 </body>
 </html>

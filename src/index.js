@@ -5,15 +5,16 @@ const Flashlight = require('./js/flashlight');
 
 const game = new Game();
 
+let peekCount = 3;
 const create = document.getElementById('create-maze');
+
 create.addEventListener('click', (e) => {
-  // debugger;
   e.preventDefault();
   document.getElementsByTagName('form')[0].style.display = 'none';
+  document.getElementById('description').innerText = `w-a-s-d to move ${peekCount} peeks remaining`
   document.getElementById('maze').style.display = 'flex';
   const height = parseInt(document.getElementById('maze-height').value);
   const width = parseInt(document.getElementById('maze-width').value);
-  // debugger;
   const map = new Maze(width, height);
   const player = new Player(map);
   const flashlight = new Flashlight(map, player);
@@ -38,7 +39,7 @@ reveal.addEventListener('click', (e) => {
   game.draw(true);
 })
 
-let peekCount = 3;
+
 const peek = document.getElementById('peek');
 
 peek.addEventListener('click', (e) => {
@@ -52,5 +53,6 @@ peek.addEventListener('click', (e) => {
     peek.style.display = 'none';
   }
   peekCount -= 1;
+  document.getElementById('description').innerText = `w-a-s-d to move ${peekCount} peeks remaining`
 })
 

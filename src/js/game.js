@@ -157,6 +157,13 @@ class Game {
       } else {
         resultModal.innerText = "Better luck next time!";
       }
+      let playAgain = document.createElement('button');
+      playAgain.innerText = "Play Again";
+      playAgain.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.reload();
+      })
+      resultModal.appendChild(playAgain);
       modalBackground.appendChild(resultModal);
       document.getElementsByTagName('body')[0].appendChild(modalBackground);
       // window.removeEventListener('keydown', this.move.bind(this));
