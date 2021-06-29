@@ -1,5 +1,5 @@
 class Graph {
-  constructor (rowCount, colCount) {
+  constructor (colCount, rowCount) {
     this.rowCount = rowCount;
     this.colCount = colCount;
     this.grid = new Array(rowCount).fill(new Array(colCount).fill(0));

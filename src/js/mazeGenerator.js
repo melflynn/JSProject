@@ -23,19 +23,22 @@ class Maze {
         walls.push([[i, j], [i + 1, j]], [[i, j], [i, j + 1]]);
       }
     }
-    for (let i = 0; i < this.height - 1; i++) {
+    for (let i = 0; i < this.width - 1; i++) {
       walls.push([[this.height - 1, i], [this.height - 1, i + 1]])
     }
-    for (let j = 0; j < this.width - 1; j++) {
+    for (let j = 0; j < this.height - 1; j++) {
       walls.push([[j, this.width -1], [j + 1, this.width - 1]]);
     }
 
+    // console.log(walls);
     let cells = new DisjointSet();
     this.grid.forEach((row, rowNum) => {
       row.forEach((col, colNum) => {
         cells.makeSet([rowNum, colNum]);
       })
     })
+    // debugger;
+    // console.log(cells);
     while (walls.length > 0) {
       let i = Math.floor(Math.random() * (walls.length - 1))
       let wall = walls[i];
@@ -49,7 +52,8 @@ class Maze {
         cells.union(wall[0], wall[1]);
       }
     }
-
+    // console.log(cells);
+    // console.log(walls);
     this.keptWalls = keptWalls;
   }
 
@@ -58,7 +62,7 @@ class Maze {
     this.canvasEl.height = this.height * 20 + 10;
     this.canvasEl.width = this.width * 20 + 10;
     // debugger;
-    
+    // console.log(this.keptWalls);
     // this.canvasEl.style.backgroundColor = 'white';
     const ctx = this.canvasEl.getContext("2d");
     ctx.strokeStyle = 'black';
