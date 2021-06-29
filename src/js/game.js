@@ -149,7 +149,6 @@ class Game {
     if (this.over) {
       let modalBackground = document.createElement('section');
       modalBackground.id = "result-modal-background";
-      // getElementById('result-modal-background').style.display = 'block';
       let resultModal = document.createElement('div');
       resultModal.id = 'result-modal-box';
       if (this.over === 'won') {
@@ -166,11 +165,7 @@ class Game {
       resultModal.appendChild(playAgain);
       modalBackground.appendChild(resultModal);
       document.getElementsByTagName('body')[0].appendChild(modalBackground);
-      // window.removeEventListener('keydown', this.move.bind(this));
-      // document.getElementById('result-modal-box').style.display = 'block';
     }
-    // this.flashlight.calculateRays();
-    // this.flashlight.lightMaze();
   }
 }
 

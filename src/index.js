@@ -2,6 +2,7 @@ const Maze = require('./js/mazeGenerator');
 const Player = require('./js/player');
 const Game = require('./js/game');
 const Flashlight = require('./js/flashlight');
+const Timer = require('./js/timer');
 
 const game = new Game();
 
@@ -29,7 +30,11 @@ create.addEventListener('click', (e) => {
   countdown.forEach((text, i) => {
     setTimeout(() => modalBox.innerText = text, 1000 * i);
   })
-  setTimeout(() => game.draw(), 3000);
+  setTimeout(() => {
+    game.draw();
+    new Timer(width, height);
+    }, 3000);
+
 })
 
 const reveal = document.getElementById('reveal-maze');
