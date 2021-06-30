@@ -3,6 +3,7 @@ const Player = require('./js/player');
 const Game = require('./js/game');
 const Flashlight = require('./js/flashlight');
 const Timer = require('./js/timer');
+const Finish = require('./js/finish');
 
 const game = new Game();
 
@@ -19,13 +20,21 @@ create.addEventListener('click', (e) => {
   const map = new Maze(width, height);
   const player = new Player(map);
   const flashlight = new Flashlight(map, player);
+  const finish = new Finish(map);
   map.kruskal();
   
   game.map = map; 
   game.player = player;
   game.flashlight = flashlight;
+  game.finish = finish;
   game.draw(true);
-  let modalBox = document.getElementById('countdown-modal-box')
+  // let modalBox = document.getElementById('countdown-modal-box')
+  let modalBackground = document.createElement('section');
+  modalBackground.id = 'result-modal-background';
+  let modalBox = document.createElement('div');
+  modalBox.id = 'modal-box';
+  modalBackground.appendChild(modalBox);
+  document.getElementsByTagName('body')[0].appendChild(modalBackground);
   const countdown = [3, 2, 1, 'start', ''];
   countdown.forEach((text, i) => {
     setTimeout(() => modalBox.innerText = text, 1000 * i);
@@ -33,6 +42,7 @@ create.addEventListener('click', (e) => {
   setTimeout(() => {
     game.draw();
     const timer = new Timer(width, height, game);
+    document.getElementsByTagName('body')[0].removeChild(modalBackground);
     }, 3000);
 
 })

@@ -104,6 +104,16 @@ class Maze {
         this.walls.push(new Wall([second[1] * 20 + 5, second[0] * 20 + 5], [second[1] * 20 + 5, (second[0] + 1) * 20 + 5], ctx, "vertical"));
       }
     })
+
+    // ctx.beginPath();
+    // ctx.strokeStyle = 'white';
+    // ctx.arc(this.width * 20 + 10, this.height * 20 + 5 - 30, 20, 0, 2 * Math.PI);
+    // ctx.stroke();
+    // const gradient = ctx.createRadialGradient(this.width * 20 + 10, this.height * 20 + 5 - 30, 1, this.width * 20 + 10, this.height * 20 + 5 - 30, 20);
+    // gradient.addColorStop(0, 'rgba(0, 71, 171, 0.5');
+    // gradient.addColorStop(1, 'rgba(135, 206, 255, .5)');
+    // ctx.fillStyle = gradient;
+    // ctx.fill();
   }
 }
 

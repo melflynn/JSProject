@@ -30,6 +30,7 @@ class Flashlight {
     maskCtx.fillRect(0, 0, maskCanvas.width, maskCanvas.height);
     maskCtx.globalCompositeOperation = 'xor';
     maskCtx.arc(this.player.pos[0], this.player.pos[1], 50, 0, 2 * Math.PI);
+    maskCtx.arc(this.map.width * 20 + 10, this.map.height * 20 + 5 - 30, 20, 0, 2 * Math.PI);
     maskCtx.fill();
     ctx.drawImage(maskCanvas, 0, 0);
   }

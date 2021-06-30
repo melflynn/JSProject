@@ -3,7 +3,7 @@
 class Player {
   constructor (map) {
     this.pos = [15, 35];
-    this.prevPos = [10, 25];
+    // this.prevPos = [10, 25];
     this.vel = [0,0];
     this.canvas = map.canvasEl;
     // this.walls = map.walls;
@@ -19,6 +19,7 @@ class Player {
     // ctx.clearRect(this.prevPos[0], this.prevPos[1], 14, 14 );
     // ctx.closePath()
     ctx.beginPath();
+    ctx.strokeStyle = 'black';
     ctx.arc(this.pos[0], this.pos[1], 6, 0, 2 * Math.PI)
     ctx.stroke();
     ctx.fillStyle = 'yellow';

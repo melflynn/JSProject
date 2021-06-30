@@ -1,7 +1,7 @@
 const dist = require('./util');
 
 class Game {
-  constructor (map, player, flashlight) {
+  constructor (map, player, flashlight, finish) {
     this.map = map;
     this.player = player;
     this.flashlight = flashlight;
@@ -20,8 +20,8 @@ class Game {
 
   move (e) {
     if (this.player && !this.over) {
-      this.player.prevPos[1] = this.player.pos[1] - 7;
-      this.player.prevPos[0] = this.player.pos[0] - 7;
+      // this.player.prevPos[1] = this.player.pos[1] - 7;
+      // this.player.prevPos[0] = this.player.pos[0] - 7;
       // const dist = (pos1, pos2) =>  Math.sqrt(Math.pow(pos1[0] - pos2[0], 2) + Math.pow(pos1[1] - pos2[1], 2));
       let newPos = true;
       
@@ -142,6 +142,7 @@ class Game {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     this.map.draw();
     this.player.draw();
+    this.finish.draw();
     if (!reveal) {
       this.flashlight.draw();
       this.flashlight.hideMaze();

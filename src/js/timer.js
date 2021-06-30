@@ -16,7 +16,7 @@ class Timer {
       setTimeout(() => {
         if (!this.game.over) {
           this.remainingTime -= 1; 
-          timerEl.innerText = this.remainingTime;
+          timerEl.innerText = `${Math.floor(this.remainingTime / 60)}min ${this.remainingTime % 60}sec`;
           if (this.remainingTime === 0) {
             this.game.over = 'timeUp';
             let modalBackground = document.createElement('section');
