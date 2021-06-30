@@ -1,28 +1,22 @@
 class Timer {
   constructor (width, height, game) {
     this.game = game;
-    this.time = Math.floor((width * height));
-    this.remainingTime = Math.floor((width * height));
+    // this.time = Math.floor((width * height) / 2);
+    this.remainingTime = Math.floor((width * height) / 2);
     this.start();
   }
 
   start () {
-    let counter = 1;
     let timerEl = document.createElement('div');
     document.getElementsByClassName('buttons')[0].appendChild(timerEl);
-    while (counter <= this.time && !this.game.over) {
-        this.countTime(counter, timerEl);
-        // counter += 1;
-    }
+    this.countTime(timerEl);
   }
   
-  countTime (counter, timerEl) {
+  countTime (timerEl) {
       setTimeout(() => {
         if (!this.game.over) {
           this.remainingTime -= 1; 
           timerEl.innerText = this.remainingTime;
-          // console.log(this.remainingTime);
-          // console.log(!this.game.over);
           if (this.remainingTime === 0) {
             this.game.over = 'timeUp';
             let modalBackground = document.createElement('section');
@@ -39,9 +33,11 @@ class Timer {
             resultModal.appendChild(playAgain);
             modalBackground.appendChild(resultModal);
             document.getElementsByTagName('body')[0].appendChild(modalBackground);
+          } else {
+            this.countTime(timerEl);
           }
         }
-      }, 1000 * counter);
+      }, 1000);
   }
 }
 

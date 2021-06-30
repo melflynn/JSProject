@@ -33,9 +33,6 @@ create.addEventListener('click', (e) => {
   setTimeout(() => {
     game.draw();
     const timer = new Timer(width, height, game);
-    // let timerEl = document.createElement('div');
-    // timerEl.innerText = timer.remainingTime;
-    // document.getElementsByClassName('buttons')[0].appendChild(timerEl);
     }, 3000);
 
 })
