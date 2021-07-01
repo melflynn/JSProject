@@ -13,8 +13,9 @@ const create = document.getElementById('create-maze');
 create.addEventListener('click', (e) => {
   e.preventDefault();
   document.getElementsByTagName('form')[0].style.display = 'none';
-  document.getElementById('description').innerText = `w-a-s-d to move ${peekCount} peeks remaining`
+  document.getElementById('description').style.display = 'none';
   document.getElementById('maze').style.display = 'flex';
+  document.getElementsByClassName('buttons')[0].style.display = 'flex';
   const height = parseInt(document.getElementById('maze-height').value);
   const width = parseInt(document.getElementById('maze-width').value);
   const map = new Maze(width, height);
@@ -68,6 +69,5 @@ peek.addEventListener('click', (e) => {
     peek.style.display = 'none';
   }
   peekCount -= 1;
-  document.getElementById('description').innerText = `w-a-s-d to move ${peekCount} peeks remaining`
 })
 

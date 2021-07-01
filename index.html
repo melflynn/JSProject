@@ -11,12 +11,23 @@
 </head>
 <body>
   
+  <h1>Welcome to the A-Maze-Ing Game!</h1>
+  <main>
+    <div>
+      <ul>
+        <h3>Game Rules:</h3>
+        <li>Use the w-a-s-d keys to move your character around the maze.</li>
+        <li>Allowed 3 peeks at the full maze</li>
+        <li>Time is limited based on the size of the maze. The larger the maze, the more difficult!</li>
+        <li>Pressing Reveal will display the full maze, and lose the game.</li>
+      </ul>
+  
+      <section class="buttons">
+        <button id="reveal-maze">Reveal</button>
+        <button id="peek">Peek</button>
+      </section>
+    </div>
 
-  </section>
-  <header>
-    <h1>Welcome to the A-Maze-Ing Game!</h1>
-    
-    
     <form>
       <h3>Please select a maze size</h3>
       <label>Width:
@@ -27,32 +38,20 @@
       </label>
       <button id="create-maze">Create!</button>
     </form>
-  </header>
+    
+    
 
-  <section id="description">
-    The A-Maze-Ing Game is a random maze generator turned online game! The generator uses Kruskal's algorithm to generate a
-    random maze of the given width and height. Enter your dimensions and press create to start the game.
-
-    <ul>
-      <h3>Rules:</h3>
-      <li>Use the w-a-s-d keys to move your character around the maze.</li>
-      <li>Allowed 3 peeks at the full maze</li>
-      <li>Time is limited based on the size of the maze. The larger the maze, the more difficult!</li>
-      <li>Pressing Reveal will display the full maze, and lose the game.</li>
-    </ul>
-     
-  </section>
-  
-  <section id="maze">
-    <section id="countdown-modal-box">
+    <section id="maze">
       
     </section>
-    <section class="buttons">
-      <button id="reveal-maze">Reveal</button>
-      <button id="peek">Peek</button>
+
+    <section id="description">
+      The A-Maze-Ing Game is a random maze generator turned online game! The generator uses Kruskal's algorithm to generate a
+      random maze of the given width and height. Enter your dimensions and press create to start the game.
     </section>
-    
-  </section>
+       
+  </main>
+  
   
 </body>
 </html>
