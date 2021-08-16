@@ -13,7 +13,7 @@
   
   <h1>Welcome to the A-Maze-Ing Game!</h1>
   <main>
-    <div>
+    <div class="rules-box">
       <ul>
         <h3>Game Rules:</h3>
         <li>Use the w-a-s-d keys to move your character around the maze.</li>
@@ -30,22 +30,25 @@
       </section>
     </div>
 
-    <form>
-      <h3>Please select a maze size</h3>
-      <label>Width:
-        <input id="maze-width" type="number">
-      </label>
-      <label>Height:
-        <input id="maze-height" type="number">
-      </label>
-      <button id="create-maze">Create!</button>
-    </form>
+    <div class="form-slash-maze">
+      <form>
+        <h3>Please select a maze size</h3>
+        <label>Width:
+          <input id="maze-width" type="number">
+        </label>
+        <label>Height:
+          <input id="maze-height" type="number">
+        </label>
+        <button id="create-maze">Create!</button>
+      </form>
+
+      <section id="maze">
+        
+      </section>
+    </div>
     
     
 
-    <section id="maze">
-      
-    </section>
 
     <section id="description">
       The A-Maze-Ing Game is a random maze generator turned online game! The generator uses Kruskal's algorithm to generate a
