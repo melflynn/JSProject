@@ -29,7 +29,7 @@ create.addEventListener('click', (e) => {
   game.flashlight = flashlight;
   game.finish = finish;
   game.draw(true);
-  // let modalBox = document.getElementById('countdown-modal-box')
+  
   let modalBackground = document.createElement('section');
   modalBackground.id = 'result-modal-background';
   let modalBox = document.createElement('div');

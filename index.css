@@ -114,9 +114,12 @@ button:hover {
 .buttons {
   display: none;
   position: relative;
-  /* flex-direction: column; */
+  flex-direction: column;
   grid-column: 1;
   grid-row: 1;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
 }
 
 #description {

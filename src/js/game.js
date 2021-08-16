@@ -39,18 +39,6 @@ class Game {
             this.draw();
           }
           break;
-        // case 37: //left
-        //   for (let i = 0; i < this.map.walls.length; i++) {
-        //     if (dist([this.player.pos[0] - 1, this.player.pos[1]], this.map.walls[i].startPos) < 8 
-        //     || dist([this.player.pos[0] - 1, this.player.pos[1]], this.map.walls[i].endPos) < 8 
-        //     || dist([this.player.pos[0] - 1, this.player.pos[1]], this.map.walls[i].center) < 8) {
-        //       newPos = false;
-        //     }
-        //   }
-        //   if (newPos) {
-        //     this.player.pos[0] -= 2;
-        //   }
-        //   break;
         case 87: //w 
           for (let i = 0; i < this.map.walls.length; i++) {
             if (dist([this.player.pos[0], this.player.pos[1] - 1], this.map.walls[i].startPos) < 8 
@@ -64,18 +52,6 @@ class Game {
             this.draw();
           }
           break;
-        // case 38: //up
-        //   for (let i = 0; i < this.map.walls.length; i++) {
-        //     if (dist([this.player.pos[0], this.player.pos[1] - 1], this.map.walls[i].startPos) < 8 
-        //     || dist([this.player.pos[0], this.player.pos[1] - 1], this.map.walls[i].endPos) < 8
-        //     || dist([this.player.pos[0], this.player.pos[1] - 1], this.map.walls[i].center) < 8) {
-        //       newPos = false;
-        //     }
-        //   }
-        //   if (newPos) {
-        //     this.player.pos[1] -= 2;
-        //   }
-        //   break;
         case 68: //d
           for (let i = 0; i < this.map.walls.length; i++) {
             if (dist([this.player.pos[0] + 1, this.player.pos[1]], this.map.walls[i].startPos) < 8 
@@ -93,18 +69,6 @@ class Game {
             this.draw();
           }
           break;
-        // case 39: //right
-        //   for (let i = 0; i < this.map.walls.length; i++) {
-        //     if (dist([this.player.pos[0] + 1, this.player.pos[1]], this.map.walls[i].startPos) < 8 
-        //     || dist([this.player.pos[0] + 1, this.player.pos[1]], this.map.walls[i].endPos) < 8
-        //     || dist([this.player.pos[0] + 1, this.player.pos[1]], this.map.walls[i].center) < 8) {
-        //       newPos = false;
-        //     }
-        //   }
-        //   if (newPos) {
-        //     this.player.pos[0] += 2;
-        //   }
-        //   break;
         case 83: //s
           for (let i = 0; i < this.map.walls.length; i++) {
             if (dist([this.player.pos[0], this.player.pos[1] + 1], this.map.walls[i].startPos) < 8 
@@ -118,18 +82,6 @@ class Game {
             this.draw();
           }
           break;
-        // case 40: //down
-        //   for (let i = 0; i < this.map.walls.length; i++) {
-        //     if (dist([this.player.pos[0], this.player.pos[1] + 1], this.map.walls[i].startPos) < 8 
-        //     || dist([this.player.pos[0], this.player.pos[1] + 1], this.map.walls[i].endPos) < 8
-        //     || dist([this.player.pos[0], this.player.pos[1] + 1], this.map.walls[i].center) < 8) {
-        //       newPos = false;
-        //     }
-        //   }
-        //   if (newPos) {
-        //     this.player.pos[1] += 2;
-        //   }
-        //   break;
       }
   
       
@@ -143,7 +95,7 @@ class Game {
     this.map.draw();
     this.player.draw();
     this.finish.draw();
-    if (!reveal) {
+    if (!reveal && !this.over) {
       this.flashlight.draw();
       this.flashlight.hideMaze();
     }
